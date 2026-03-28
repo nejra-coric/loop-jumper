@@ -599,6 +599,87 @@
     src.stop(t + 0.35);
   }
 
+  /** Dramatic sting when the run ends (enemy touch or fall). */
+  function playGameOverDramatic() {
+    ensureAudio();
+    if (!audioCtx) return;
+    const t = audioCtx.currentTime;
+    const dur = 1.05;
+
+    const out = audioCtx.createGain();
+    out.gain.setValueAtTime(0.42, t);
+    out.gain.exponentialRampToValueAtTime(0.001, t + dur);
+    out.connect(audioCtx.destination);
+
+    const lp = audioCtx.createBiquadFilter();
+    lp.type = 'lowpass';
+    lp.Q.value = 0.9;
+    lp.frequency.setValueAtTime(3200, t);
+    lp.frequency.exponentialRampToValueAtTime(160, t + dur * 0.88);
+    lp.connect(out);
+
+    const merge = audioCtx.createGain();
+    merge.gain.value = 1;
+    merge.connect(lp);
+
+    const oLow = audioCtx.createOscillator();
+    oLow.type = 'sawtooth';
+    oLow.frequency.setValueAtTime(198, t);
+    oLow.frequency.exponentialRampToValueAtTime(42, t + dur * 0.92);
+    const gLow = audioCtx.createGain();
+    gLow.gain.value = 0.26;
+    oLow.connect(gLow);
+    gLow.connect(merge);
+
+    const oMid = audioCtx.createOscillator();
+    oMid.type = 'triangle';
+    oMid.frequency.setValueAtTime(155, t);
+    oMid.frequency.exponentialRampToValueAtTime(48, t + dur * 0.92);
+    const gMid = audioCtx.createGain();
+    gMid.gain.value = 0.2;
+    oMid.connect(gMid);
+    gMid.connect(merge);
+
+    const oSting = audioCtx.createOscillator();
+    oSting.type = 'sine';
+    oSting.frequency.setValueAtTime(554, t);
+    oSting.frequency.exponentialRampToValueAtTime(117, t + 0.38);
+    const gSting = audioCtx.createGain();
+    gSting.gain.setValueAtTime(0.0001, t);
+    gSting.gain.exponentialRampToValueAtTime(0.2, t + 0.025);
+    gSting.gain.exponentialRampToValueAtTime(0.0001, t + 0.42);
+    oSting.connect(gSting);
+    gSting.connect(merge);
+
+    oLow.start(t);
+    oMid.start(t);
+    oSting.start(t);
+    oLow.stop(t + dur);
+    oMid.stop(t + dur);
+    oSting.stop(t + 0.48);
+
+    const nSamp = Math.floor(audioCtx.sampleRate * 0.1);
+    const buf = audioCtx.createBuffer(1, nSamp, audioCtx.sampleRate);
+    const data = buf.getChannelData(0);
+    for (let i = 0; i < nSamp; i++) {
+      data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (nSamp * 0.22));
+    }
+    const noise = audioCtx.createBufferSource();
+    noise.buffer = buf;
+    const nf = audioCtx.createBiquadFilter();
+    nf.type = 'bandpass';
+    nf.frequency.value = 380;
+    nf.Q.value = 0.85;
+    const ng = audioCtx.createGain();
+    ng.gain.setValueAtTime(0.18, t);
+    ng.gain.exponentialRampToValueAtTime(0.001, t + 0.1);
+    noise.connect(nf);
+    nf.connect(ng);
+    ng.connect(out);
+    noise.start(t);
+    noise.stop(t + 0.11);
+  }
+
   function setHudVisible(v) {
     if (!hudEl) return;
     if (v) hudEl.classList.remove('hud-hidden');
@@ -1572,6 +1653,7 @@
           deathReason = 'enemy';
           deathEnemyLabel = e.label || '';
           gameOver = true;
+          playGameOverDramatic();
           return;
         }
       }
@@ -1609,6 +1691,7 @@
       deathReason = 'fall';
       deathEnemyLabel = '';
       gameOver = true;
+      playGameOverDramatic();
     }
 
     updateLegacyFlyby(dt);
