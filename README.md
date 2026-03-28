@@ -88,4 +88,4 @@ Install the generated `.vsix` via **Extensions → … → Install from VSIX…*
 
 Copyright © CodeLoop. All rights reserved.
 
-*(Add your chosen license — e.g. MIT, proprietary — if you publish this extension.)*
+
