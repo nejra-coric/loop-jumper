@@ -1,0 +1,44 @@
+{
+  "name": "doodle-jump-sidebar",
+  "displayName": "Loop Jumper",
+  "description": "Loop Jumper — CodeLoop sidebar arcade for VS Code. Climb, shoot bugs, save for a rocket boost! https://codeloop.ba",
+  "version": "0.1.0",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "doodleJump",
+          "title": "Loop Jumper",
+          "icon": "$(rocket)"
+        }
+      ]
+    },
+    "views": {
+      "doodleJump": [
+        {
+          "type": "webview",
+          "id": "doodleJump.gameView",
+          "name": "Loop Jumper"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.3"
+  }
+}
