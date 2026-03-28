@@ -170,7 +170,7 @@
 
   /** Tokenized lines for animated code wallpaper (VS Code Dark+ colors) */
   const CODE_WALLPAPER = [
-    [{ t: '/* Developer Break — arcade.ts */', c: '#6A9955' }],
+    [{ t: '/* Loop Jumper: Code Break — arcade.ts */', c: '#6A9955' }],
     [
       { t: 'const ', c: '#569CD6' },
       { t: 'controls ', c: '#9CDCFE' },
@@ -462,7 +462,7 @@
     const cellH = vz(92);
     const rows = Math.ceil(SKIN_IDS.length / cols);
     const totalH = rows * cellH + vz(24);
-    const MENU_TOP = vz(78);
+    const MENU_TOP = vz(88);
     const MENU_PLAY_RESERVE = vz(56);
     const viewH = Math.max(40, H - MENU_TOP - MENU_PLAY_RESERVE);
     return { cols, pad, cellH, rows, totalH, MENU_TOP, viewH, MENU_PLAY_RESERVE };
@@ -1779,16 +1779,18 @@
 
     ctx.textAlign = 'center';
     ctx.fillStyle = '#4ec9b0';
-    ctx.font = `700 ${vz(17)}px Consolas, monospace`;
-    ctx.fillText('DEVELOPER BREAK', W / 2, vz(22));
+    ctx.font = `700 ${vz(16)}px Consolas, monospace`;
+    ctx.fillText('Loop Jumper', W / 2, vz(18));
+    ctx.font = `700 ${vz(13)}px Consolas, monospace`;
+    ctx.fillText('Code Break', W / 2, vz(36));
     ctx.fillStyle = '#858585';
     ctx.font = `${vz(10)}px Consolas, monospace`;
-    ctx.fillText('Pick a skin · Wheel to scroll', W / 2, vz(46));
+    ctx.fillText('Pick a skin · Wheel to scroll', W / 2, vz(54));
 
     ctx.strokeStyle = 'rgba(255,255,255,0.08)';
     ctx.beginPath();
-    ctx.moveTo(vz(8), vz(64));
-    ctx.lineTo(W - vz(8), vz(64));
+    ctx.moveTo(vz(8), vz(72));
+    ctx.lineTo(W - vz(8), vz(72));
     ctx.stroke();
 
     ctx.save();

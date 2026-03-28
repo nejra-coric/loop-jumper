@@ -73,7 +73,7 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource} 'unsafe-inline'; script-src 'nonce-${nonce}';" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="${styleUri}" rel="stylesheet" />
-  <title>Developer Break</title>
+  <title>Loop Jumper: Code Break</title>
 </head>
 <body>
   <div id="hud" class="hud-hidden">
@@ -81,7 +81,7 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
     <span id="hint">A/D move · Space=shoot bugs · Cmd/Ctrl+S=rocket</span>
   </div>
   <div id="canvas-wrap">
-    <canvas id="game" tabindex="0" title="Developer Break — focus canvas to play"></canvas>
+    <canvas id="game" tabindex="0" title="Loop Jumper: Code Break — focus canvas to play"></canvas>
   </div>
   <script nonce="${nonce}">
     window.__DJ_VSCODE__ = acquireVsCodeApi();

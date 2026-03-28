@@ -1,15 +1,32 @@
 {
-  "name": "doodle-jump-sidebar",
-  "displayName": "Loop Jumper",
-  "description": "Loop Jumper — CodeLoop sidebar arcade for VS Code. Climb, shoot bugs, save for a rocket boost! https://codeloop.ba",
-  "version": "0.1.0",
-  "publisher": "local",
+  "name": "loop-jumper",
+  "displayName": "Loop Jumper: Code Break",
+  "description": "Loop Jumper: Code Break — CodeLoop sidebar arcade. Climb, shoot bugs, save for a rocket boost! https://codeloop.ba",
+  "version": "0.0.1",
+  "publisher": "StudioCodeLoop",
   "icon": "media/icon.png",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codeloop-ba/loop-jumper.git"
+  },
+  "homepage": "https://codeloop.ba",
   "engines": {
     "vscode": "^1.85.0"
   },
   "categories": [
     "Other"
+  ],
+  "keywords": [
+    "loop jumper",
+    "code break",
+    "codeloop",
+    "game",
+    "arcade",
+    "sidebar",
+    "doodle jump",
+    "break",
+    "mini game"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -17,7 +34,7 @@
       "activitybar": [
         {
           "id": "doodleJump",
-          "title": "Loop Jumper",
+          "title": "Code Break",
           "icon": "media/icon.png"
         }
       ]
@@ -27,7 +44,7 @@
         {
           "type": "webview",
           "id": "doodleJump.gameView",
-          "name": "Loop Jumper"
+          "name": "Loop Jumper · Code Break"
         }
       ]
     }
