@@ -4,6 +4,7 @@
   "description": "Loop Jumper — CodeLoop sidebar arcade for VS Code. Climb, shoot bugs, save for a rocket boost! https://codeloop.ba",
   "version": "0.1.0",
   "publisher": "local",
+  "icon": "media/icon.png",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -17,7 +18,7 @@
         {
           "id": "doodleJump",
           "title": "Loop Jumper",
-          "icon": "$(rocket)"
+          "icon": "media/icon.png"
         }
       ]
     },
